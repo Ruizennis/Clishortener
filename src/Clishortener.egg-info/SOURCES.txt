@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/Clishortener/Clishortener_config.json
+src/Clishortener/Services.json
+src/Clishortener/Shortener.py
+src/Clishortener/__init__.py
+src/Clishortener.egg-info/PKG-INFO
+src/Clishortener.egg-info/SOURCES.txt
+src/Clishortener.egg-info/dependency_links.txt
+src/Clishortener.egg-info/entry_points.txt
+src/Clishortener.egg-info/requires.txt
+src/Clishortener.egg-info/top_level.txt

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Clishortener"
+version = "0.0.2"
+description = "Easily shorten links with different services all in a cli tool"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Console",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "requests>=2.28.0",
+]
+[project.optional-dependencies]
+rich = ["rich"]
+
+
+[project.urls]
+Homepage = "https://github.com/Ruizennis/Clishortener"
+Issues = "https://github.com/Ruizennis/Clishortener/issues"
+
+[project.scripts]
+cshorten = "Clishortener:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+Clishortener = ["*.json"]

@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: Clishortener
+Version: 0.0.2
+Summary: Easily shorten links with different services all in a cli tool
+License: MIT
+Project-URL: Homepage, https://github.com/Ruizennis/Clishortener
+Project-URL: Issues, https://github.com/Ruizennis/Clishortener/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Topic :: Utilities
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.28.0
+Provides-Extra: rich
+Requires-Dist: rich; extra == "rich"
+
+# Clishortener (WIP)
+## Easily shorten links with different services all in one cli tool
+
+## Installation
+install using pip
+```bash
+pip install Clishortener
+```
+or install from source using git
+```bash
+git clone (url)
+cd Clishortener
+```
+
+## Usage
+```bash
+cshorten url [flags]
+```
+
+## Services
+
+| Service | Identifier | Requires key | Homepage |
+|---------|---------------|--------------|----------|
+| tinyurl | tinyurl-auth / tinyurl-noauth | ✓/X | [Click here](https://tinyurl.com/)|
+| is\.gd   | isgd | X | [Click Here](https://is.gd/index.php) |
+| v\.gd     | vgd  | X | [Click here](https://v.gd/) |
+| da\.gd    | dagd | X | [Click here](https://da.gd) |
+| cleanuri | cleanuri | X | [Click here](https://cleanuri.com/) |
+| ulvis   | ulvis | X | [Click here](https://ulvis.net/) |
+| short\.io | shortio | ✓ | [Click here](https://short.io/) |
+| clck\.ru   | clckru | X | [Click here](https://clck.ru) |
+| bit\.ly   | bitly | ✓ | [Click here](https://bitly.com/) |
+| cutt\.ly  | cuttly | ✓ | [Click here](https://cutt.ly/) |
+| YOURLS | yourls | ✓/X | [Click here](https://yourls.org/) |
+| Custom | custom | ✓/X | None |
+
+## Flags
+
+| Flag | Long Flag | Purpose | Usage Example |
+|------|-----------|---------|---------------|
+## Additional information
+- Default url shortening service is tinyurl (no key / anonymous)
+- Identifier is used when specifying a specific link shortening service with -s or -d
+- YOURLS is selfhosted only
+- Custom & YOURLS allows any url to be used
+- When using Custom or YOURLS use the full url

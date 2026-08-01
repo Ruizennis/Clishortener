@@ -1,0 +1,118 @@
+{
+    "tinyurl-noauth": {
+        "serviceurl": "http://tinyurl.com/api-create.php",
+        "method": "GET",
+        "params": {
+            "url": ""
+        }
+    },
+    "tinyurl-auth": {
+        "serviceurl": "https://api.tinyurl.com/create",
+        "auth_param": "api_token",
+        "method": "GET",
+        "params": {
+            "url": "",
+            "api_token": ""
+        }
+    },
+    "isgd": {
+        "serviceurl": "https://is.gd/create.php",
+        "method": "GET",
+        "params": {
+            "format": "simple",
+            "url": ""
+        }
+    },
+    "vgd": {
+        "serviceurl": "https://v.gd/create.php",
+        "method": "GET",
+        "params": {
+            "format": "simple",
+            "url": ""
+        }
+    },
+    "dagd": {
+        "serviceurl": "https://da.gd/s",
+        "method": "GET",
+        "params": {
+            "url": ""
+        }
+    },
+    "clckru": {
+        "serviceurl": "https://clck.ru/--",
+        "method": "GET",
+        "params": {
+            "url": ""
+        }
+    },
+    "ulvis": {
+        "serviceurl": "https://ulvis.net/api.php",
+        "method": "GET",
+        "params": {
+            "url": "",
+            "adv": "0"
+        }
+    },
+    "cleanuri": {
+        "serviceurl": "https://cleanuri.com/api/v1/shorten",
+        "method": "POST",
+        "json_body": true,
+        "json_key": "result_url",
+        "params": {
+            "url": ""
+        }
+    },
+    "bitly": {
+        "serviceurl": "https://api-ssl.bitly.com/v4/shorten",
+        "auth_header": "Authorization",
+        "url_param": "long_url",
+        "method": "POST",
+        "json_body": true,
+        "json_key": "link",
+        "params": {}
+     },
+
+    "cuttly": {
+        "serviceurl": "https://cutt.ly/api/api.php",
+        "auth_param": "key",
+        "url_param": "short",
+        "method": "GET",
+        "params": {
+            "key": "",
+            "short": ""
+        }
+    },
+    "shortio": {
+        "serviceurl": "https://api.short.io/links/public",
+        "auth_header": "authorization",
+        "url_param": "originalURL",
+        "method": "POST",
+        "json_key": "shortURL",
+        "json_body": true,
+        "params": {}
+    },
+    "0x0": {
+        "serviceurl": "https://0x0.st",
+        "method": "POST",
+        "multifile": true,
+        "url_param": "shorten",
+        "json_body": false,
+        "params": {}
+     },
+    "yourls": {
+        "serviceurl": "{domain}",
+        "auth_param": "signature",
+        "params": {
+            "action": "shorturl",
+            "format": "simple",
+            "url": "",
+            "signature": ""
+        }
+    },
+    "custom": {
+        "serviceurl": "{domain}",
+        "params": {
+            "url": ""
+        }
+    }
+}
