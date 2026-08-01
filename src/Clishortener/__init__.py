@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 
 def configpath() -> Path:
-    home = Path.home() / ".conf" / "clishortener"
+    home = Path.home() / ".config" / "clishortener"
     home.mkdir(parents=True, exist_ok=True)
     return home / "Clishortener_config.json"
 
