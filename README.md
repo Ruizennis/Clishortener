@@ -126,9 +126,9 @@ cshorten -d dagd
 ___
 
 ## Additional Links & Credits
-[Pypi - clishortener]() 
-[Github - Clishorteners]() 
-[Issues - Clishorteners]()
+[Pypi - clishortener](https://pypi.org/project/Clishortener/) 
+[Github - Clishorteners](https://github.com/Ruizennis/Clishorteners) 
+[Issues - Clishorteners](https://github.com/Ruizennis/Clishorteners/issues)
 
 Credits To Pyshorteners Made By ellisonleao For Inspiring This Tool 
 [Pyshorteners](https://github.com/ellisonleao/pyshorteners) 
