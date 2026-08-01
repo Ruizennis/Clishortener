@@ -122,6 +122,17 @@ cshorten -d dagd
         "params": {}
 }
 ```
+
+___
+
+## Additional Links & Credits
+[Pypi - clishortener]() 
+[Github - Clishorteners]() 
+[Issues - Clishorteners]()
+
+Credits To Pyshorteners Made By ellisonleao For Inspiring This Tool 
+[Pyshorteners](https://github.com/ellisonleao/pyshorteners) 
+
 ___
 
 # License
