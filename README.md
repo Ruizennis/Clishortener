@@ -1,12 +1,16 @@
 # Clishortener
 > A lightweight, feature-rich CLI tool to shorten links using 12+ services—with zero configuration required.
 
+
+[![PyPI version](https://img.shields.io/pypi/v/Clishortener.svg)](https://pypi.org/project/Clishortener/)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org)
 [![PyPI version](https://img.shields.io/pypi/v/Clishortener.svg?color=blue)](https://pypi.org/project/Clishortener/)
 [![PyPI Total Downloads](https://img.shields.io/pepy/dt/Clishortener.svg)](https://pepy.tech/project/Clishortener)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Tested for Termux](https://img.shields.io/badge/Tested_for-Termux-17020Fstyle=flat&logo=termux&logoColor=white&color=000000)
 
-![Asciinema Showcase](Assets/demo.gif)
+
+![Asciinema Showcase](https://raw.githubusercontent.com/Ruizennis/Clishortener/main/Assets/demo.gif)
 
 
 ## Key Features 
