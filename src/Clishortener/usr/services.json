@@ -102,23 +102,6 @@
             "destination": ""
         } 
     },
-    "httpbin": {
-         "serviceurl": "https://httpbin.org/post",
-        "method": "POST",
-        "auth_header": "apikey",
-        "url_param": "destination",
-        "params": {
-        "destination": ""
-        }
-    },
-    "DOWN-0x0": {
-        "serviceurl": "https://0x0.st",
-        "method": "POST",
-        "multifile": true,
-        "url_param": "shorten",
-        "json_body": false,
-        "params": {}
-     },
     "yourls": {
         "serviceurl": "{domain}",
         "auth_param": "signature",

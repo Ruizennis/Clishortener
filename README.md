@@ -94,13 +94,8 @@ echo "https://example.com" | cshorten shorten >> links.txt
 | [clck.ru](https://clck.ru)   | clckru | No |
 | [bit.ly](https://bitly.com)   | bitly | Yes |
 | [cutt.ly](https://cutt.ly)  | cuttly | Yes |
-| [0x0.st](https://0x0.st/) | DOWN-0x0 | No |
 | [YOURLS](https://yourls.org/) | yourls | Optional |
 | Custom | custom | Optional |
-
-> [!WARNING]
-> As of 2026-08-01 file hosting on the public 0x0.st instance is temporarily paused with no ETA for its return, self hosting is recommended.
-> Self-host The Null Pointer (0x0) from [The Official Git Repository](https://git.0x0.st/mia/0x0).
 
 ---
 
@@ -178,22 +173,30 @@ echo "https://example.com" | cshorten shorten >> links.txt
 }
 ```
 
-#### Testing the httpbin example
+#### Testing httpbin example
 ```bash
 cshorten shorten https://example.com -s httpbin -k ApiKey
 ```
 
-### Anonymous Service JSON Example 🔓
+### No Key Service JSON Example 🔓
 
 ```json
-"dagd": {
-    "serviceurl": "https://da.gd/s",
-    "method": "GET",
-    "params": {
-        "url": ""
-    }
-}
+"0x0": {
+        "serviceurl": "https://0x0.st",
+        "method": "POST",
+        "multifile": true,
+        "url_param": "shorten",
+        "json_body": false,
+        "params": {}
+     },
 ```
+#### Testing 0x0 example
+```bash
+cshorten shorten https://example.com -s 0x0
+```
+> [!WARNING]
+> As of 2026-08-01 file hosting on the public [0x0.st](0x0.st) instance is temporarily paused with no ETA for its return, self hosting is recommended.
+> Self-host The Null Pointer (0x0) from [The Official Git Repository](https://git.0x0.st/mia/0x0).
 
 ### Authenticated API JSON Example 🔐
 
