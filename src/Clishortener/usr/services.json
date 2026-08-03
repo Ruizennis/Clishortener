@@ -1,6 +1,6 @@
 {
     "tinyurl-noauth": {
-        "serviceurl": "http://tinyurl.com/api-create.php",
+        "serviceurl": "https://tinyurl.com/api-create.php",
         "method": "GET",
         "params": {
             "url": ""
@@ -91,7 +91,27 @@
         "json_body": true,
         "params": {}
     },
-    "0x0": {
+    "rebrandly": {
+        "serviceurl": "https://api.rebrandly.com/v1/links",
+        "method": "POST",
+        "auth_header": "apikey",
+        "url_param": "destination",
+        "json_body": true,
+        "json_key": "shorturl",
+        "params": {
+            "destination": ""
+        } 
+    },
+    "httpbin": {
+         "serviceurl": "https://httpbin.org/post",
+        "method": "POST",
+        "auth_header": "apikey",
+        "url_param": "destination",
+        "params": {
+        "destination": ""
+        }
+    },
+    "DOWN-0x0": {
         "serviceurl": "https://0x0.st",
         "method": "POST",
         "multifile": true,

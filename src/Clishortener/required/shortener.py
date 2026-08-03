@@ -34,8 +34,10 @@ def shorten(url=None, params=None, **kwargs):
     json_body = kwargs.get("json_body")
     json_key = kwargs.get("json_key")
     serviceurl = kwargs.get("serviceurl")
-    headers = kwargs.get("headers")
-    multipart = kwargs.get("multipart", False)
+    headers = kwargs.get("headers", {})
+    multifile = kwargs.get("multifile", False)
+    proxies = kwargs.get("proxies", {})
+
     if not url or not url.startswith(("http://", "https://")):
         raise InvalidUrlError("No url entered.")
     if not params:
@@ -46,22 +48,24 @@ def shorten(url=None, params=None, **kwargs):
         if method == "POST":
             if json_body:
                 shortenedurl = requests.post(
-                    serviceurl, json=params, headers=headers)
-            elif multipart:
+                    serviceurl, json=params, headers=headers, proxies=proxies)
+            elif multifile:
                 files = {}
                 for key, value in params.items():
                     files[key] = value
                 shortenedurl = requests.post(
-                    serviceurl, files=files, headers=headers)
+                    serviceurl, files=files, headers=headers, proxies=proxies)
             else:
                 shortenedurl = requests.post(
-                    serviceurl, data=params, headers=headers)
+                    serviceurl, data=params, headers=headers, proxies=proxies)
         else:
             shortenedurl = requests.get(
-                serviceurl, params=params, headers=headers)
+                serviceurl, params=params, headers=headers, proxies=proxies)
         shortenedurl.raise_for_status()
         if json_key:
-            return shortenedurl.json().get(json_key, "").strip()
+            val = shortenedurl.json().get(json_key, "")
+            return val.strip() if isinstance(val, str) else str(val)
+
         return shortenedurl.text.strip()
     except requests.RequestException as errormessage:
         raise ShortenerError(f"HTTP request failed: {errormessage}")
