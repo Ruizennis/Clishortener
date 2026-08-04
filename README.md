@@ -32,7 +32,10 @@
 | `PySocks`  | Optional | Allows more types of proxying (SOCKS) |
 | `rich` | Optional | Adds terminal colors, menus, and visual styling |
 | `argcomplete` | Optional | Provides shell auto-completion for `cshorten` |
+| `keyring` / `keyrings.alt` | Optional | Allows saving API keys securely for automatic authentication |
 
+> [!NOTE]
+> If you are using Termux or a terminal that doesn't support keyring use keyrings.alt instead. (`pip install keyrings.alt`)
 ## Installation Options 📥
 
 ### Via PyPI (recommended)
@@ -126,7 +129,6 @@ echo "https://example.com" | cshorten shorten >> links.txt
 
 | Category | Command | Description | Usage Example |
 | :--- | :--- | :--- | :--- |
-| **Unshorten** | `unshorten <shorturl>` | Basic Shorturl Resolution • `cshorten unshorten <URL>` |
 | **Service** | `default` | Set default shortening service | `cshorten service default <service>` |
 | **Service**| `list` | List all available services | `cshorten service list` |
 | **Security** | `proxy edit` | Edit proxy configuration | `cshorten security proxy edit` |
