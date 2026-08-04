@@ -71,29 +71,49 @@ echo "https://example.com" | cshorten shorten >> links.txt
 
 ---
 
-### Supported Services 🌐
+## Supported Services 🌐
 
-| Service | Service Identifier | API Key Required? | Privacy Policy & Terms |
+| Service | Identifier | API Key Required? | Privacy Profile |
 | :--- | :--- | :--- | :--- |
-| **TinyURL** | `tinyurl-noauth` / `tinyurl-auth` | Optional | [Privacy Policy](https://tinyurl.com/app/privacy-policy) · [Terms of Service](https://tinyurl.com/app/terms-of-service) |
-| **is.gd** | `isgd` | No | [Terms & Privacy Policy](https://is.gd/terms.php) |
-| **v.gd** | `vgd` | No | [Terms & Privacy Policy](https://v.gd/terms.php) |
-| **da.gd** | `dagd` | No | [Source & Licensing](https://github.com/dagd/dagd) |
-| **clck.ru** | `clckru` | No | [Privacy Policy](https://yandex.com/legal/confidential/) · [Terms of Use](https://yandex.ru/legal/clck_termsofuse/) |
-| **ulvis.net** | `ulvis` | No | [Service Terms](https://ulvis.net/) |
-| **CleanURI** | `cleanuri` | No | [Privacy Policy](https://cleanuri.com/privacy) · [Terms of Service](https://cleanuri.com/terms) |
-| **Bitly** | `bitly` | **Yes** | [Privacy Policy](https://bitly.com/pages/privacy) · [Terms of Service](https://bitly.com/pages/terms-of-service) |
-| **Cuttly** | `cuttly` | **Yes** | [Privacy Policy](https://cutt.ly/privacy-policy) · [Terms of Service](https://cutt.ly/terms-of-service) |
-| **Short.io** | `shortio` | **Yes** | [Privacy Policy](https://short.io/privacy) · [Terms of Service](https://short.io/terms) |
-| **Rebrandly** | `rebrandly` | **Yes** | [Privacy Policy](https://rebrandly.com/privacy-policy) · [Terms & Conditions](https://rebrandly.com/terms-and-conditions) |
-| **YOURLS** | `yourls` | Optional | *Self-Hosted* (Subject to instance host policies) |
-| **Custom Service** | `custom` | Optional | *User Defined* (Subject to custom endpoint policies) |
+| **TinyURL** | `tinyurl-noauth` / `tinyurl-auth` | Optional | Third-Party Managed |
+| **is.gd** / **v.gd** | `isgd` / `vgd` | No | Third-Party Managed |
+| **da.gd** | `dagd` | No | Third-Party Managed |
+| **clck.ru** | `clckru` | No | Third-Party Managed |
+| **ulvis.net** | `ulvis` | No | Third-Party Managed |
+| **CleanURI** | `cleanuri` | No | Third-Party Managed |
+| **Bitly** | `bitly` | **Yes** | Third-Party Managed |
+| **Cuttly** | `cuttly` | **Yes** | Third-Party Managed |
+| **Short.io** | `shortio` | **Yes** | Third-Party Managed |
+| **Rebrandly** | `rebrandly` | **Yes** | Third-Party Managed |
+| **YOURLS** | `yourls` | Optional | **Self-Hosted** (Zero 3rd-Party Logging) |
+| **Custom Service** | `custom` | Optional | **User-Defined** (Full Control) |
 
 > [!IMPORTANT]  
 > **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices. Self-hosted options (`YOURLS`, `custom`) give you total control over data logging.
-> 
-> **Disclaimer:** These legal policy links are provided for convenience only and do not constitute legal advice. links may change over time and as a solo developer, I can't guarantee every link stays up to date.
 
+
+<details>
+<summary><b>📜 View Provider Terms & Privacy Policies</b></summary>
+
+<br>
+
+| Provider | Legal & Policy Links |
+| :--- | :--- |
+| **TinyURL** | [Privacy Policy](https://tinyurl.com/app/privacy-policy) · [Terms of Service](https://tinyurl.com/app/terms-of-service) |
+| **is.gd** | [Terms & Privacy Policy](https://is.gd/terms.php) |
+| **v.gd** | [Terms & Privacy Policy](https://v.gd/terms.php) |
+| **da.gd** | [Source & Licensing](https://github.com/dagd/dagd) |
+| **clck.ru** | [Privacy Policy](https://yandex.com/legal/confidential/) · [Terms of Use](https://yandex.ru/legal/clck_termsofuse/) |
+| **ulvis.net** | [Service Terms](https://ulvis.net/) |
+| **CleanURI** | [Privacy Policy](https://cleanuri.com/privacy) · [Terms of Service](https://cleanuri.com/terms) |
+| **Bitly** | [Privacy Policy](https://bitly.com/pages/privacy) · [Terms of Service](https://bitly.com/pages/terms-of-service) |
+| **Cuttly** | [Privacy Policy](https://cutt.ly/privacy-policy) · [Terms of Service](https://cutt.ly/terms-of-service) |
+| **Short.io** | [Privacy Policy](https://short.io/privacy) · [Terms of Service](https://short.io/terms) |
+| **Rebrandly** | [Privacy Policy](https://rebrandly.com/privacy-policy) · [Terms & Conditions](https://rebrandly.com/terms-and-conditions) |
+
+ **Disclaimer:** These legal policy links are provided for convenience only, links may change over time and as a solo developer, I can't guarantee every link stays up to date.
+
+</details>
 
 ---
 
