@@ -24,18 +24,6 @@
 * 🕹 **Plug & Play:** Start shortening immediately after installation, no setup required.
 ---
 
-## Requirements 📦
-
-| Package | Type | Purpose |
-| :--- | :--- | :--- |
-| `requests` | **Required** | Handles HTTP calls to shortening APIs |
-| `PySocks`  | Optional | Allows more types of proxying (SOCKS) |
-| `rich` | Optional | Adds terminal colors, menus, and visual styling |
-| `argcomplete` | Optional | Provides shell auto-completion for `cshorten` |
-| `keyring` / `keyrings.alt` | Optional | Allows saving API keys securely for automatic authentication |
-
-> [!NOTE]
-> If you are using Termux or a terminal that doesn't support keyring use keyrings.alt instead. (`pip install keyrings.alt`)
 ## Installation Options 📥
 
 ### Via PyPI (recommended)
@@ -106,6 +94,21 @@ echo "https://example.com" | cshorten shorten >> links.txt
 > 
 > **Disclaimer:** These legal policy links are provided for convenience only and do not constitute legal advice. links may change over time and as a solo developer, I can't guarantee every link stays up to date.
 
+
+---
+
+## Requirements 📦
+
+| Package | Type | Purpose |
+| :--- | :--- | :--- |
+| `requests` | **Required** | Handles HTTP calls to shortening APIs |
+| `PySocks`  | Optional | Allows more types of proxying (SOCKS) |
+| `rich` | Optional | Adds terminal colors, menus, and visual styling |
+| `argcomplete` | Optional | Provides shell auto-completion for `cshorten` |
+| `keyring` / `keyrings.alt` | Optional | Allows saving API keys securely for automatic authentication |
+
+> [!NOTE]
+> If you are using Termux or a terminal that doesn't support keyring use keyrings.alt instead. (`pip install keyrings.alt`)
 
 ---
 
