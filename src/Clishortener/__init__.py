@@ -73,6 +73,8 @@ def main():
         elif args.command == "security":
             if args.securitycommand == "proxy":
                 args.func(args, userconf)
+            elif args.securitycommand == "keys":
+                args.func(args, services)
             else:
                 args.func(args)
         elif args.command == "shorten":

@@ -34,12 +34,17 @@ except ImportError:
     )
 
 
-def cli_print(message: str, baremessage: str, bare: bool = False) -> str:
+def cli_print(
+    message: str,
+    baremessage: str,
+    bare: bool = False,
+    end: str = '\n'
+) -> str:
     if (not stdout.isatty() and not FORCE_COLOR) or not RICHLOADED or NO_COLOR:
         bare = True
     if not message or not baremessage:
         raise PrintError("Print Requires 2 Arguments, message and baremessage")
     if bare:
-        stdout.write(baremessage + "\n")
+        stdout.write(baremessage + end)
     else:
-        rich.print(message)
+        rich.print(message, end=end)

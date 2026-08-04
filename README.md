@@ -19,9 +19,9 @@
 * 🔌 **12+ Services Pre-configured:** TinyURL, Bitly, Short.io, CleanURI, and more.
 * 🛠️ **Custom & Self-Hosted:** Full support for custom domains and YOURLS instances.
 * 🎨 **Colored Output:** Optional colorful terminal UI using `rich`.
+* 🛡️ **Privacy Focused:** Automatically strips common tracking urls.
 * ⚡ **Pipeline Friendly:** Pass raw output directly to stdout or other scripts using bare/silent flags.
 * 🕹 **Plug & Play:** Start shortening immediately after installation, no setup required.
-
 ---
 
 ## Requirements 📦
@@ -80,22 +80,29 @@ echo "https://example.com" | cshorten shorten >> links.txt
 
 ---
 
-## All Services 🌐
+### Supported Services 🌐
 
-| Service | Identifier | Requires Key |
-|---------|---------------|-----------|
-| [tinyurl](https://tinyurl.com/) | tinyurl-auth / tinyurl-noauth | Optional |
-| [is.gd](https://is.gd/index.php)   | isgd | No | 
-| [v.gd](https://v.gd)     | vgd  | No |
-| [da.gd](https://da.gd)    | dagd | No |
-| [cleanuri](https://cleanuri.com/) | cleanuri | No |
-| [ulvis](https://ulvis.net/)   | ulvis | No |
-| [short.io](https://short.io) | shortio | Yes |
-| [clck.ru](https://clck.ru)   | clckru | No |
-| [bit.ly](https://bitly.com)   | bitly | Yes |
-| [cutt.ly](https://cutt.ly)  | cuttly | Yes |
-| [YOURLS](https://yourls.org/) | yourls | Optional |
-| Custom | custom | Optional |
+| Service | Service Identifier | API Key Required? | Privacy Policy & Terms |
+| :--- | :--- | :--- | :--- |
+| **TinyURL** | `tinyurl-noauth` / `tinyurl-auth` | Optional | [Privacy Policy](https://tinyurl.com/app/privacy-policy) · [Terms of Service](https://tinyurl.com/app/terms-of-service) |
+| **is.gd** | `isgd` | No | [Terms & Privacy Policy](https://is.gd/terms.php) |
+| **v.gd** | `vgd` | No | [Terms & Privacy Policy](https://v.gd/terms.php) |
+| **da.gd** | `dagd` | No | [Source & Licensing](https://github.com/dagd/dagd) |
+| **clck.ru** | `clckru` | No | [Privacy Policy](https://yandex.com/legal/confidential/) · [Terms of Use](https://yandex.ru/legal/clck_termsofuse/) |
+| **ulvis.net** | `ulvis` | No | [Service Terms](https://ulvis.net/) |
+| **CleanURI** | `cleanuri` | No | [Privacy Policy](https://cleanuri.com/privacy) · [Terms of Service](https://cleanuri.com/terms) |
+| **Bitly** | `bitly` | **Yes** | [Privacy Policy](https://bitly.com/pages/privacy) · [Terms of Service](https://bitly.com/pages/terms-of-service) |
+| **Cuttly** | `cuttly` | **Yes** | [Privacy Policy](https://cutt.ly/privacy-policy) · [Terms of Service](https://cutt.ly/terms-of-service) |
+| **Short.io** | `shortio` | **Yes** | [Privacy Policy](https://short.io/privacy) · [Terms of Service](https://short.io/terms) |
+| **Rebrandly** | `rebrandly` | **Yes** | [Privacy Policy](https://rebrandly.com/privacy-policy) · [Terms & Conditions](https://rebrandly.com/terms-and-conditions) |
+| **YOURLS** | `yourls` | Optional | *Self-Hosted* (Subject to instance host policies) |
+| **Custom Service** | `custom` | Optional | *User Defined* (Subject to custom endpoint policies) |
+
+> [!IMPORTANT]  
+> **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices. Self-hosted options (`YOURLS`, `custom`) give you total control over data logging.
+> 
+> **Disclaimer:** These legal policy links are provided for convenience only and do not constitute legal advice. links may change over time and as a solo developer, I can't guarantee every link stays up to date.
+
 
 ---
 
@@ -113,17 +120,20 @@ echo "https://example.com" | cshorten shorten >> links.txt
 |------|-----------|---------|
 | -s   | --service | Allows specifying service for a command |
 | -k   | --key     | Allows setting an api key for services that require it |
-
+|      | --no-strip| Disables automatic tracker parameter removal |
 
 ## Additional Commands >_
 
 | Category | Command | Description | Usage Example |
 | :--- | :--- | :--- | :--- |
+| **Unshorten** | `unshorten <shorturl>` | Basic Shorturl Resolution • `cshorten unshorten <URL>` |
 | **Service** | `default` | Set default shortening service | `cshorten service default <service>` |
 | **Service**| `list` | List all available services | `cshorten service list` |
 | **Security** | `proxy edit` | Edit proxy configuration | `cshorten security proxy edit` |
 | **Security** | `proxy show` | Show current proxy configuration | `cshorten security proxy show` |
 | **Security** | `proxy reset` | Remove proxy configuration | `cshorten security proxy reset` |
+| **Security** | `keys set` | Add an api key for a service | `cshorten security keys set bitly`|
+| **Security** | `keys clear` | Clears ALL set api keys or just for specified service | `cshorten security keys clear bitly`|
 
 ---
 
@@ -217,8 +227,8 @@ cshorten shorten https://example.com -s 0x0
 ---
 
 ## Planned Features 📌
-- [ ] Saving api keys with Keyring & automatically loading saved api keys 
-- [ ] Saving links created to a file
+- [X] Saving api keys with Keyring & automatically loading saved api keys 
+- [ ] Saving links created to a file (Off by default)
 
 ---
 

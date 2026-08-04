@@ -2,9 +2,11 @@
 
 import sys
 import logging
+import getpass
 from pathlib import Path
 from .rich_print import cli_print
 from .shortener import shorten
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +15,11 @@ try:
     PROXYAVAILABLE = True
 except ImportError:
     PROXYAVAILABLE = False
+try:
+    from ..modules.keyringsupport import setkey, checkkey, deletekey
+    KEYRING = True
+except ImportError:
+    KEYRING = False
 try:
     from rich.console import Console
     from rich.table import Table
@@ -40,6 +47,58 @@ def updateuserconf(file: Path, data: dict = None) -> None:
             json.dump(data, f, indent=4)
     except Exception as errormsg:
         logger.error(f"Unable to update configuration file {errormsg}")
+
+
+DEFAULT_TRACKERS = {
+    # Standard UTM Parameters
+    "utm_source", "utm_medium", "utm_campaign", "utm_term",
+    "utm_content", "utm_id", "utm_source_platform",
+
+    # Ad Network & Click Identifiers
+    "gclid", "gclsrc", "fbclid", "msclkid", "ttclid",
+    "twclid", "dclid", "li_fat_id", "yclid",
+
+    # Platform & Social Sharing Trackers
+    "igshid", "s", "t", "si", "feature", "app",
+    "ref", "ref_src", "ref_url",
+
+    # Email & Marketing Automation (CRMs)
+    "mc_eid", "mc_cid", "_hsenc", "_hsmi", "mkt_tok",
+    "klaviyo_id", "_kx", "vero_id",
+
+    # E-Commerce & Affiliate Trackers
+    "tag", "ascsubtag", "ref_", "itm_source", "itm_medium",
+    "affiliate_id", "aff_id",
+}
+
+
+def clean_url(url: str) -> str:
+    """Strips common tracking parameters from a URL."""
+    try:
+        parsed = urlparse(url)
+        if not parsed.query:
+            return url
+
+        query_params = parse_qs(parsed.query, keep_blank_values=True)
+
+        sanitized_params = {
+            key: value
+            for key, value in query_params.items()
+            if key.lower() not in DEFAULT_TRACKERS
+        }
+
+        new_query = urlencode(sanitized_params, doseq=True)
+
+        return urlunparse((
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path,
+            parsed.params,
+            new_query,
+            parsed.fragment
+        ))
+    except Exception:
+        return url
 
 
 def handle_service_default(args, services, userconf):
@@ -149,10 +208,97 @@ def handle_proxy_reset(args, userconf):
     sys.exit(0)
 
 
+def handle_keyring_set(args, services):
+    if args.service:
+        key = getpass.getpass(prompt=f"Enter API Key For {args.service}: ")
+        if not key.strip():
+            cli_print(
+                message="[bold red]API Key Cannot Be Empty.",
+                baremessage="API Key Cannot Be Empty.",
+                bare=getattr(args, "bare", False)
+            )
+            sys.exit(1)
+        if args.service in services:
+            setkey(args.service, key)
+            cli_print(
+                message=(
+                    "[bold light_green]"
+                    f"Successfully set {args.service} key."
+                ),
+                baremessage=f"Successfully set {args.service} key.",
+                bare=getattr(args, "bare", False)
+            )
+        else:
+            cli_print(
+                message="[bold red]Invalid Service",
+                baremessage="Invalid Service",
+                bare=getattr(args, "bare", False)
+            )
+            sys.exit(1)
+    else:
+        cli_print(
+            message="[bold red]Provide service identifier and api key.",
+            baremessage="Provide service identifier and api key.",
+            bare=getattr(args, "bare", False)
+        )
+        sys.exit(1)
+
+
+def handle_keyring_clear(args, services):
+    """Clears API keys stored in keyring."""
+    if hasattr(args, "service") and args.service:
+        deletekey(args.service)
+        cli_print(
+            message=(
+                "[bold light_green]"
+                f"API key for [cyan]{args.service}[/cyan] reset."
+            ),
+            baremessage=f"API key for {args.service} reset.",
+            bare=getattr(args, "bare", False)
+        )
+    else:
+        if sys.stdin.isatty():
+            cli_print(
+                message=(
+                    "[bold orange3]"
+                    "Are you sure you want to clear"
+                    "ALL saved API keys? [y/N]: "
+                ),
+                baremessage=(
+                    "Are you sure you want to clear"
+                    "ALL saved API keys? [y/N]: "
+                ),
+                bare=getattr(args, "bare", False),
+                end=''
+            )
+        YES = {'yes', 'y'}
+        if sys.stdin.readline().strip().lower() in YES:
+            for service_name in services:
+                deletekey(service_name)
+            cli_print(
+                message=(
+                    "[bold light_green]"
+                    "All saved API keys have been cleared."
+                ),
+                baremessage="All saved API keys have been cleared.",
+                bare=getattr(args, "bare", False)
+            )
+        else:
+            cli_print(
+                message="[bold light_green]Operation Cancelled.",
+                baremessage="Operation Cancelled.",
+                bare=getattr(args, "bare", False)
+            )
+    sys.exit(0)
+
+
 def handle_shorten(args, services, fileload):
     if not args.url:
         if not sys.stdin.isatty():
             args.url = sys.stdin.read().strip()
+            if not getattr(args, "no_strip", False):
+                args.url = clean_url(args.url)
+
         if not args.url:
             cli_print(
                 message=(
@@ -197,6 +343,8 @@ def handle_shorten(args, services, fileload):
         headers = servicesconfig.get("auth_header")
         headers_dict = {}
 
+        if not args.key and KEYRING:
+            args.key = checkkey(args.service)
         if headers:
             if not args.key:
                 logger.error(f"Service {args.service} requires an api key!")

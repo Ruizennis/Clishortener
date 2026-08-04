@@ -8,6 +8,8 @@ from .handlers import (
     handle_security_proxy_edit,
     handle_proxy_show,
     handle_proxy_reset,
+    handle_keyring_set,
+    handle_keyring_clear,
     handle_shorten,
 )
 
@@ -122,11 +124,53 @@ def initurlparser(servicedefault: str) -> argparse.ArgumentParser:
         help="Urlshortening service to use",
     )
     shortenparser.add_argument(
+        "--no-strip",
+        action="store_true",
+        help="Disable automatic tracking parameter stripping"
+    )
+    shortenparser.add_argument(
         "-k",
         "--key",
         action="store",
         help="Allows adding an api key for services that require it",
     )
+    keyringparser = securitysubparser.add_parser(
+        "keys",
+        help=(
+            'Set or Reset api keys, '
+            'keys are autochecked when shortening '
+            'using an authenticated service'
+        )
+    )
+    keyringsubparser = keyringparser.add_subparsers(
+        dest="keyringcommand",
+        metavar=""
+    )
+    keyringset = keyringsubparser.add_parser(
+        "set",
+        help="Set a service API key."
+    )
+    keyringset.add_argument(
+        "service",
+        help="Service that the key is set for."
+    )
+    keyringset.set_defaults(func=handle_keyring_set)
+    keyringclear = keyringsubparser.add_parser(
+        "clear",
+        help=(
+            "Clear all set API keys, "
+            "accepts specifying a service identifier to only "
+            "clear that services key."
+        )
+    )
+    keyringclear.add_argument(
+        "service",
+        nargs="?",
+        default=None,
+        help="Optionally add service identifier to reset a specific key only."
+    )
+    keyringclear.set_defaults(func=handle_keyring_clear)
+    keyringclear.set_defaults(func=handle_keyring_clear)
     parser.add_argument(
         "-b",
         "--bare",
