@@ -15,13 +15,13 @@
 
 ## Key Features 
 
-* 🚀 **Lightweight & Fast:** Works right out of the terminal, all dependencies besides requests are 100% optional.
-* 🔌 **12+ Services Pre-configured:** TinyURL, Bitly, Short.io, CleanURI, and more.
+* 🔌 **12+ Services:** TinyURL, Bitly, Short.io, CleanURI, and more.
 * 🛠️ **Custom & Self-Hosted:** Full support for custom domains and YOURLS instances.
 * 🎨 **Colored Output:** Optional colorful terminal UI using `rich`.
 * 🛡️ **Privacy Focused:** Automatically strips common tracking urls.
 * ⚡ **Pipeline Friendly:** Pass raw output directly to stdout or other scripts using bare/silent flags.
 * 🕹 **Plug & Play:** Start shortening immediately after installation, no setup required.
+
 ---
 
 ## Installation Options 📥
@@ -54,8 +54,7 @@ cshorten shorten https://example.com
 ```
 Set your preferred service as the default 🔧
 ```bash
-# Usage: cshorten service default <servicename>
-cshorten service default dagd
+cshorten service default <servicename>
 ```
 List all available services 📜
 ```bash
@@ -73,20 +72,20 @@ echo "https://example.com" | cshorten shorten >> links.txt
 
 ## Supported Services 🌐
 
-| Service | Identifier | API Key Required? | Privacy Profile |
-| :--- | :--- | :--- | :--- |
-| **TinyURL** | `tinyurl-noauth` / `tinyurl-auth` | Optional | Third-Party Managed |
-| **is.gd** / **v.gd** | `isgd` / `vgd` | No | Third-Party Managed |
-| **da.gd** | `dagd` | No | Third-Party Managed |
-| **clck.ru** | `clckru` | No | Third-Party Managed |
-| **ulvis.net** | `ulvis` | No | Third-Party Managed |
-| **CleanURI** | `cleanuri` | No | Third-Party Managed |
-| **Bitly** | `bitly` | **Yes** | Third-Party Managed |
-| **Cuttly** | `cuttly` | **Yes** | Third-Party Managed |
-| **Short.io** | `shortio` | **Yes** | Third-Party Managed |
-| **Rebrandly** | `rebrandly` | **Yes** | Third-Party Managed |
-| **YOURLS** | `yourls` | Optional | **Self-Hosted** (Zero 3rd-Party Logging) |
-| **Custom Service** | `custom` | Optional | **User-Defined** (Full Control) |
+| Service | Identifier | API Key Required? |
+| :--- | :--- | :--- |
+| **TinyURL** | `tinyurl-noauth` / `tinyurl-auth` | Optional |
+| **is.gd** / **v.gd** | `isgd` / `vgd` | No |
+| **da.gd** | `dagd` | No |
+| **clck.ru** | `clckru` | No |
+| **ulvis.net** | `ulvis` | No |
+| **CleanURI** | `cleanuri` | No |
+| **Bitly** | `bitly` | **Yes** |
+| **Cuttly** | `cuttly` | **Yes** |
+| **Short.io** | `shortio` | **Yes** |
+| **Rebrandly** | `rebrandly` | **Yes** |
+| **YOURLS** | `yourls` | Optional |
+| **Custom Service** | `custom` | Depends on service chosen |
 
 > [!IMPORTANT]  
 > **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices. Self-hosted options (`YOURLS`, `custom`) give you total control over data logging.
