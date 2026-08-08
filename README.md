@@ -88,7 +88,7 @@ echo "https://example.com" | cshorten shorten >> links.txt
 | **Custom Service** | `custom` | Depends on service chosen |
 
 > [!IMPORTANT]  
-> **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices. Self-hosted options (`YOURLS`, `custom`) give you total control over data logging.
+> **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices.
 
 
 <details>
