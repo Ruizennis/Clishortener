@@ -98,17 +98,17 @@ echo "https://example.com" | cshorten shorten >> links.txt
 
 | Provider | Legal & Policy Links |
 | :--- | :--- |
-| **TinyURL** | [Privacy Policy](https://tinyurl.com/app/privacy-policy) · [Terms of Service](https://tinyurl.com/app/terms-of-service) |
+| **TinyURL** | [Privacy Policy](https://tinyurl.com/app/privacy-policy) · [Terms of Service](https://tinyurl.com/app/terms) |
 | **is.gd** | [Terms & Privacy Policy](https://is.gd/terms.php) |
 | **v.gd** | [Terms & Privacy Policy](https://v.gd/terms.php) |
-| **da.gd** | [Source & Licensing](https://github.com/dagd/dagd) |
-| **clck.ru** | [Privacy Policy](https://yandex.com/legal/confidential/) · [Terms of Use](https://yandex.ru/legal/clck_termsofuse/) |
-| **ulvis.net** | [Service Terms](https://ulvis.net/) |
+| **da.gd** | [Privacy Policy](https://codeberg.org/Codeberg/org/src/branch/main/PrivacyPolicy.md) |
+| **clck.ru** | [Privacy Policy](https://yandex.com/legal/confidential/) · [Terms of Use](https://yandex.com/legal/clck_termsofuse/) |
+| **ulvis.net** | [Service Terms](https://ulvis.net/privacy.html) |
 | **CleanURI** | [Privacy Policy](https://cleanuri.com/privacy) · [Terms of Service](https://cleanuri.com/terms) |
 | **Bitly** | [Privacy Policy](https://bitly.com/pages/privacy) · [Terms of Service](https://bitly.com/pages/terms-of-service) |
 | **Cuttly** | [Privacy Policy](https://cutt.ly/privacy-policy) · [Terms of Service](https://cutt.ly/terms-of-service) |
 | **Short.io** | [Privacy Policy](https://short.io/privacy) · [Terms of Service](https://short.io/terms) |
-| **Rebrandly** | [Privacy Policy](https://rebrandly.com/privacy-policy) · [Terms & Conditions](https://rebrandly.com/terms-and-conditions) |
+| **Rebrandly** | [Privacy Policy](https://rebrandly.com/privacy-policy) · [Terms & Conditions](https://www.rebrandly.com/terms-conditions) |
 
  **Disclaimer:** These legal policy links are provided for convenience only, links may change over time and as a solo developer, I can't guarantee every link stays up to date.
 
@@ -253,7 +253,7 @@ cshorten shorten https://example.com -s 0x0
 ## Planned Features 📌
 - [X] Saving api keys with Keyring & automatically loading saved api keys 
 - [ ] Saving links created to a file (Off by default)
-
+- [ ] Support for making a qr code in conjuction with the short url
 ---
 
 ## Additional Links & Credits 🔗
