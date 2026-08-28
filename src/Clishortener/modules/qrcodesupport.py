@@ -1,9 +1,11 @@
 from sys import stdout
-from rich_print import cli_print
+try:
+    from Clishortener.required.rich_print import cli_print
+except ImportError:
+    from ..required.rich_print import cli_print
 
 try:
     import qrcode
-
     QRAVAILABLE = True
 except ImportError:
     QRAVAILABLE = False

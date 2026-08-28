@@ -24,11 +24,16 @@ try:
 except ImportError:
     KEYRING = False
 try:
-    from ..modules.qrcodesupport import getqr
-
+    from Clishortener.modules.qrcodesupport import getqr
     QRAVAILABLE = True
 except ImportError:
-    QRAVAILABLE = False
+    try:
+        from ..modules.qrcodesupport import getqr
+
+        QRAVAILABLE = True
+    except ImportError:
+        QRAVAILABLE = False
+
 try:
     from rich.console import Console
     from rich.table import Table
