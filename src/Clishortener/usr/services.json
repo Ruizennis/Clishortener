@@ -71,6 +71,15 @@
         "json_key": "link",
         "params": {}
      },
+    "tly": {
+        "serviceurl": "https://api.t.ly/v1/shorten",
+        "auth_header": "Authorization",
+        "url_param": "long_url",
+        "method": "POST",
+        "json_body": true,
+        "json_key": "short_url",
+        "params": {}
+    },
 
     "cuttly": {
         "serviceurl": "https://cutt.ly/api/api.php",
@@ -102,16 +111,45 @@
             "destination": ""
         } 
     },
+    "dub": {
+        "serviceurl": "https://api.dub.co/links",
+        "auth_header": "Authorization",
+        "url_param": "url",
+        "slug_param": "key",
+        "method": "POST",
+        "json_body": true,
+        "json_key": "shortLink",
+        "params": {}
+    },
+    "kutt": {
+        "serviceurl": "https://kutt.to/api/v2/links",
+        "auth_header": "X-API-KEY",
+        "url_param": "target",
+        "slug_param": "customurl",
+        "method": "POST",
+        "json_body": true,
+        "json_key": "link",
+        "params": {}
+    },
+
     "yourls": {
         "serviceurl": "{domain}",
         "auth_param": "signature",
+        "url_param": "url",
+        "slug_param": "keyword",
         "params": {
             "action": "shorturl",
-            "format": "simple",
-            "url": "",
-            "signature": ""
+            "format": "simple"
         }
     },
+    "httpbin": {
+        "serviceurl": "http://127.0.0.1:8000/post",
+        "method": "POST",
+        "url_param": "destination",
+        "slug_param": "key",
+        "params": {}
+    },
+
     "custom": {
         "serviceurl": "{domain}",
         "params": {

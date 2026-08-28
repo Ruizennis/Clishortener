@@ -4,11 +4,13 @@ import json
 import logging
 from pathlib import Path
 from .required.parser import initurlparser
+
 logger = logging.getLogger(__name__)
 bare = False
 
 try:
     import argcomplete
+
     ARGCOMPLETEAVAILABLE = True
 except ImportError:
     ARGCOMPLETEAVAILABLE = False

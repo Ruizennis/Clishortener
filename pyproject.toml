@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Clishortener"
-version = "0.2.2"
+version = "0.2.4"
 description = "A lightweight, feature-rich CLI tool to shorten links using 12+ services—with zero configuration required."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -25,7 +25,8 @@ argcomplete = ["argcomplete"]
 pysocks = ["PySocks"]
 keyring = ["keyring"]
 keyringalt = ["keyrings.alt"]
-full = ["rich", "argcomplete", "requests[socks]", "keyring"]
+qrcode = ["qrcode"]
+full = ["rich", "argcomplete", "requests[socks]", "keyring", "qrcode"]
 
 [project.urls]
 Homepage = "https://github.com/Ruizennis/Clishortener"

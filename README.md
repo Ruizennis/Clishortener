@@ -15,7 +15,7 @@
 
 ## Key Features 
 
-* 🔌 **12+ Services:** TinyURL, Bitly, Short.io, CleanURI, and more.
+* 🔌 **14+ Services:** TinyURL, Bitly, Short.io, CleanURI, and more.
 * 🛠️ **Custom & Self-Hosted:** Full support for custom domains and YOURLS instances.
 * 🎨 **Colored Output:** Optional colorful terminal UI using `rich`.
 * 🛡️ **Privacy Focused:** Automatically strips common tracking urls.
@@ -28,23 +28,16 @@
 
 ### Via PyPI (recommended)
 ```bash
-pip install clishortener[rich]
+pip install clishortener[full]
 ```
-> This will also install rich. To install necessary files only, use `pip install clishortener`
+> This will also install optional packages. To install necessary packages only, use `pip install clishortener`
 
 ### From source via git
 ```bash
 git clone https://github.com/Ruizennis/Clishortener
-cd Clishortener
+cd clishortener
 pip install .
 ```
-
-### Installing all optional packages
-```bash
-pip install clishortener[full]
-activate-global-python-argcomplete # This will setup argcomplete globally
-```
-
 ---
 
 ## Quick Start
@@ -82,13 +75,16 @@ echo "https://example.com" | cshorten shorten >> links.txt
 | **CleanURI** | `cleanuri` | No |
 | **Bitly** | `bitly` | **Yes** |
 | **Cuttly** | `cuttly` | **Yes** |
+| **T.ly** | `tly` | **Yes** |
 | **Short.io** | `shortio` | **Yes** |
 | **Rebrandly** | `rebrandly` | **Yes** |
+| **Dub.co** | `dub` | **Yes** |
+| **Kutt.to** | `kutt` | **Yes**
 | **YOURLS** | `yourls` | Optional |
 | **Custom Service** | `custom` | Depends on service chosen |
 
 > [!IMPORTANT]  
-> **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices.
+> **Privacy & Service Usage:** Requests routed through third-party shorteners are subject to each provider's independent privacy and logging practices. Self-hosted options (`YOURLS`, `custom`) give you total control over data logging.
 
 
 <details>
@@ -107,8 +103,11 @@ echo "https://example.com" | cshorten shorten >> links.txt
 | **CleanURI** | [Privacy Policy](https://cleanuri.com/privacy) · [Terms of Service](https://cleanuri.com/terms) |
 | **Bitly** | [Privacy Policy](https://bitly.com/pages/privacy) · [Terms of Service](https://bitly.com/pages/terms-of-service) |
 | **Cuttly** | [Privacy Policy](https://cutt.ly/privacy-policy) · [Terms of Service](https://cutt.ly/terms-of-service) |
+| **T.ly** | [Privacy Policy](https://t.ly/privacy) • [Terms of Service](https://t.ly/terms) |
 | **Short.io** | [Privacy Policy](https://short.io/privacy) · [Terms of Service](https://short.io/terms) |
 | **Rebrandly** | [Privacy Policy](https://rebrandly.com/privacy-policy) · [Terms & Conditions](https://www.rebrandly.com/terms-conditions) |
+| **Dub.co** | [Privacy Policy](https://dub.co/legal/terms)
+| **Kutt.to** | [Privacy Policy](https://kutt.to/terms)
 
  **Disclaimer:** These legal policy links are provided for convenience only, links may change over time and as a solo developer, I can't guarantee every link stays up to date.
 
@@ -125,9 +124,10 @@ echo "https://example.com" | cshorten shorten >> links.txt
 | `rich` | Optional | Adds terminal colors, menus, and visual styling |
 | `argcomplete` | Optional | Provides shell auto-completion for `cshorten` |
 | `keyring` / `keyrings.alt` | Optional | Allows saving API keys securely for automatic authentication |
-
+| `qrcode` | Optional | Allows generating qrcodes alongside the shortened url |
 > [!NOTE]
 > If you are using Termux or a terminal that doesn't support keyring use keyrings.alt instead. (`pip install keyrings.alt`)
+> Also note that argcomplete is incompatible with termux from my understanding
 
 ---
 
@@ -145,6 +145,9 @@ echo "https://example.com" | cshorten shorten >> links.txt
 |------|-----------|---------|
 | -s   | --service | Allows specifying service for a command |
 | -k   | --key     | Allows setting an api key for services that require it |
+| -a   | --alias   | Allows setting a custom alias/slug for services that support it |
+| -q   | --qr      | Creates a QR code along side your shortened url (**Requires qrcode**)|
+| -t   | --timeout | Allows setting custom timeout time |
 |      | --no-strip| Disables automatic tracker parameter removal |
 
 ## Additional Commands >_
@@ -162,21 +165,21 @@ echo "https://example.com" | cshorten shorten >> links.txt
 ---
 
 ## Notes & Usage Tips 💡
-
-* **Self-Hosted & Custom Domains:** Use the full URL and set the `--domain` flag when using `yourls` or `custom` providers.
-* **API Keys:** API keys can be provided via the `-k` / `--key` flag for services requiring authentication.
+* **API Keys:** API keys can be provided via the `-k` / `--key` flag for services requiring authentication or set by using `cshorten security keys set <servicename> <key>`.
 * **Service Identifiers:** When specifying or setting a default service, always use the service's Identifier (e.g., dagd, tinyurl-auth) rather than its display name or URL.
 
-<details>
-<summary><b>⚙️ Advanced Configuration</b></summary>
+---
 
-> - **Custom / YOURLS:** Requires full URL endpoint and the `--domain` flag.
-> - **Custom Headers:** Sent in `key: value` format.
+<details>
+<summary><b>⚙️ Advanced Tips & Help</b></summary>
+
+> - **Self-Hosted & Custom Domains:** Use the full URL and set the `--domain` flag when using `yourls` or `custom` providers.
+> - **Custom Config:** Sent in `key: value` format.
 > - **Config Parameters:** `auth_param` specifies key requirements; `url_param` sets the request payload variable (defaults to `"url"`).
-> - **NO COLOR:** We proudly support the NO_COLOR initiative. Add NO_COLOR=1 to os.environ to disable output styling
+> - **NO_COLOR:** We support the NO_COLOR initiative. Add NO_COLOR=1 to os.environ to disable output styling
 > - **FORCE_COLOR:** Add FORCE_COLOR=1 to your env variables to force color for use in asciinema or vhs recordings.
-> - **Pipes:** We support piping data, when piping bare is automatically appiled ensuring no color and only url is sent allowing for more complex pipelines.
-> - **Advanced Proxy Networks:** SOCKS proxies and TOR routing is fully supported if you install the required add-on for requests, simply add your socks proxy URL to the proxy list.
+> - **Pipes:** We support piping data, when piping bare is automatically appiled ensuring no color and only url is sent allowing for more complex piping.
+> - **Proxying:** SOCKS proxies and TOR routing is fully supported if you install the required add-on for requests, simply add your socks proxy URL to the proxy list.
 
 > [!WARNING]
 > Using SOCKS proxies requires pysocks, install PySocks with `pip install "requests[socks]"`
@@ -186,7 +189,38 @@ echo "https://example.com" | cshorten shorten >> links.txt
 ---
 
 <details>
-<summary><b>Adding Additional Services Examples 🔨</b></summary>
+<summary><b>🛡️ Security Features</b></summary>
+
+### These common tracking parameters are automatically stripped when shortening.
+
+```text
+    # Standard UTM Parameters
+    "utm_source", "utm_medium", "utm_campaign", "utm_term",
+    "utm_content", "utm_id", "utm_source_platform",
+
+    # Ad Network & Click Identifiers
+    "gclid", "gclsrc", "fbclid", "msclkid", "ttclid",
+    "twclid", "dclid", "li_fat_id", "yclid",
+
+    # Platform & Social Sharing Trackers
+    "igshid", "s", "t", "si", "feature", "app",
+    "ref", "ref_src", "ref_url",
+
+    # Email & Marketing Automation (CRMs)
+    "mc_eid", "mc_cid", "_hsenc", "_hsmi", "mkt_tok",
+    "klaviyo_id", "_kx", "vero_id",
+
+    # E-Commerce & Affiliate Trackers
+    "tag", "ascsubtag", "ref_", "itm_source", "itm_medium",
+    "affiliate_id", "aff_id",
+```
+
+</details>
+
+---
+
+<details>
+<summary><b>🔨 Adding Additional Services Examples</b></summary>
 
 > [!IMPORTANT]
 > Additional services can be added By editing `services.json` (/.config/clishortener/usr/usrconfig.json) and adding new entries.
@@ -199,11 +233,9 @@ echo "https://example.com" | cshorten shorten >> links.txt
 "httpbin": {
     "serviceurl": "https://httpbin.org/post",
     "method": "POST",
-    "auth_header": "apikey",
     "url_param": "destination",
-    "params": {
-        "destination": ""
-    }
+    "slug_param": "key",
+    "params": {}
 }
 ```
 
@@ -252,8 +284,8 @@ cshorten shorten https://example.com -s 0x0
 
 ## Planned Features 📌
 - [X] Saving api keys with Keyring & automatically loading saved api keys 
-- [ ] Saving links created to a file (Off by default)
-- [ ] Support for making a qr code in conjuction with the short url
+- [X] Support for making a qr code in conjunction with the short url
+- [X] Saving links created to a file (Off by default)
 ---
 
 ## Additional Links & Credits 🔗

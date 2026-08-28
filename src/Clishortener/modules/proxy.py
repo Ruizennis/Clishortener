@@ -14,18 +14,14 @@ def proxyconfig() -> dict:
         "Http=\n"
         "Https=\n"
     )
-    with tempfile.NamedTemporaryFile(
-        suffix=".tmp",
-        mode="w+",
-        delete=False
-    ) as tf:
+    with tempfile.NamedTemporaryFile(suffix=".tmp", mode="w+", delete=False) as tf:
         tf.write(template)
         temp_path = tf.name
     try:
         editor = os.environ.get("EDITOR", "nano")
         subprocess.run([editor, temp_path], check=True)
         proxies = {}
-        with open(temp_path, 'r', encoding='utf-8') as file:
+        with open(temp_path, "r", encoding="utf-8") as file:
             for line in file:
                 line = line.strip()
                 if not line or line.startswith("#"):
