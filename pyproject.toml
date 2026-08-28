@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Clishortener"
-version = "0.2.4"
+version = "0.3.0"
 description = "A lightweight, feature-rich CLI tool to shorten links using 12+ services—with zero configuration required."
 readme = "README.md"
 requires-python = ">=3.10"
