@@ -51,7 +51,7 @@ def loadjson(file: Path) -> dict:
         with open(file, "r") as f:
             return json.load(f)
     except (json.JSONDecodeError, KeyError, FileNotFoundError):
-        logger.CRITICAL("Missing keys or malformed json file")
+        logger.critical("Missing keys or malformed json file")
         
 
 

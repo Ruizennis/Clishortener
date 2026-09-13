@@ -160,7 +160,6 @@ def initurlparser(servicedefault: str) -> argparse.ArgumentParser:
         help="Optionally add service identifier to reset a specific key only.",
     )
     keyringclear.set_defaults(func=handle_keyring_clear)
-    keyringclear.set_defaults(func=handle_keyring_clear)
     parser.add_argument(
         "-b",
         "--bare",
