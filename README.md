@@ -181,8 +181,7 @@ echo "https://example.com" | cshorten shorten >> links.txt
 > - **Pipes:** We support piping data, when piping bare is automatically appiled ensuring no color and only url is sent allowing for more complex piping.
 > - **Proxying:** SOCKS proxies and TOR routing is fully supported if you install the required add-on for requests, simply add your socks proxy URL to the proxy list.
 
-> [!WARNING]
-> Using SOCKS proxies requires pysocks, install PySocks with `pip install "requests[socks]"`
+Reminder: Using SOCKS proxies requires pysocks, install PySocks with `pip install "requests[socks]"`
 
 </details>
 
